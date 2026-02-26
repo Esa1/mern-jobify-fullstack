@@ -1,6 +1,10 @@
-console.log("server is working ...");
+import express from "express";
+const app = express();
 
-import { namedValue } from "./test-named.js";
-console.log(namedValue);
-import value from "./test-default.js";
-console.log(value);
+app.get("/", (req, res) => {
+  res.send("Hello world");
+});
+
+app.listen(5100, () => {
+  console.log("server running");
+});
