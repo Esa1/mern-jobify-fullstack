@@ -4,6 +4,15 @@ import express from "express";
 const app = express();
 import morgan from "morgan";
 
+try {
+  const response = await fetch(
+    "https://www.course-api.com/react-useReducer-cart-project",
+  );
+  const cartData = await response.json();
+  console.log(cartData);
+} catch (error) {
+  console.log(error);
+}
 //console.log("NODE_ENV=");
 //console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === "development") {
