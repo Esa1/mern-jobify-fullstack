@@ -6,9 +6,10 @@ import express from "express";
 const app = express();
 import morgan from "morgan";
 import mongoose from "mongoose";
-
 // routers
 import jobRouter from "./routes/jobRouter.js";
+//middleware
+import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 
 if (process.env.NODE_ENV === "development") {
   //  console.log("still running morgan");
@@ -34,10 +35,7 @@ app.use("*", (req, res) => {
 });
 
 // Error middleware for handling errors happened or throwned inside an existing route controller
-app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(500).json({ msg: "something went wrong" });
-});
+app.use(errorHandlerMiddleware);
 
 const port = process.env.port || 5100;
 
