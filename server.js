@@ -12,7 +12,7 @@ import jobRouter from "./routes/jobRouter.js";
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 
 if (process.env.NODE_ENV === "development") {
-  //  console.log("still running morgan");
+  console.log("still running morgan");
   app.use(morgan("dev"));
 }
 
@@ -34,7 +34,6 @@ app.use("*", (req, res) => {
   res.status(404).json({ msg: "not found" });
 });
 
-// Error middleware for handling errors happened or throwned inside an existing route controller
 app.use(errorHandlerMiddleware);
 
 const port = process.env.port || 5100;
@@ -44,7 +43,8 @@ try {
   app.listen(port, () => {
     console.log(`server running on port ${port}...`);
   });
-} catch {
-  console.log(console.error());
+} catch (error) {
+  console.log("esa");
+  console.log(error);
   process.exit(1);
 }
