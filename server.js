@@ -7,7 +7,7 @@ const app = express();
 import morgan from "morgan";
 import mongoose from "mongoose";
 
-import { validateTest } from "./middleware/validationMiddleware.js";
+// import { validateTest } from "./middleware/validationMiddleware.js";
 // routers
 import jobRouter from "./routes/jobRouter.js";
 //middleware
@@ -24,10 +24,10 @@ app.get("/", (req, res) => {
   res.send("Hello world");
 });
 
-app.post("/api/v1/test", validateTest, (req, res) => {
-  const { name } = req.body;
-  res.json({ message: `hello ${name}` });
-});
+// app.post("/api/v1/test", validateTest, (req, res) => {
+//   const { name } = req.body;
+//   res.json({ message: `hello ${name}` });
+// });
 
 app.use("/api/v1/jobs", jobRouter);
 
