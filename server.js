@@ -10,11 +10,12 @@ import mongoose from "mongoose";
 // import { validateTest } from "./middleware/validationMiddleware.js";
 // routers
 import jobRouter from "./routes/jobRouter.js";
+import authRouter from "./routes/authRouter.js";
+
 //middleware
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 
 if (process.env.NODE_ENV === "development") {
-  console.log("still running morgan");
   app.use(morgan("dev"));
 }
 
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
 // });
 
 app.use("/api/v1/jobs", jobRouter);
+app.use("/api/v1/auth", authRouter);
 
 // Not found middleware for handling non-existing routes
 app.use("*", (req, res) => {
@@ -46,7 +48,7 @@ try {
     console.log(`server running on port ${port}...`);
   });
 } catch (error) {
-  console.log("esa");
+  console.log("error in creating server:");
   console.log(error);
   process.exit(1);
 }
