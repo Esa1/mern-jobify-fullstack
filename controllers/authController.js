@@ -3,6 +3,7 @@ import User from "../models/UserModel.js";
 import { hashPassword } from "../utils/passwordUtils.js";
 import { UnauthenticatedError } from "../errors/customError.js";
 import { comparePassword } from "../utils/passwordUtils.js";
+import { createJWT } from "../utils/tokenUtils.js";
 
 //npm i --save-dev @types/bcryptjs: uninstall
 export const register = async (req, res) => {
@@ -24,10 +25,11 @@ export const login = async (req, res) => {
 
   if (!isValidUser) throw new UnauthenticatedError("invalid credentials");
 
-  res.send("login");
-  //   const user = await User.create(req.body);
-  //   res.status(StatusCodes.CREATED).json({ user });
+  const token = createJWT({ userId: user._id, role: user.role });
+
+  res.json({ token });
 };
+
 // export const getAllUsers = async (req, res) => {
 //   const users = await User.find({});
 //   res.status(StatusCodes.OK).json({ users });
