@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/v1/test", (req, res) => {
-  res.json({ msg: "test route" });
+  res.json({ msg: "test route1" });
 });
 
 app.use("/api/v1/jobs", authenticateUser, jobRouter);
