@@ -11,7 +11,7 @@ import cookieParser from "cookie-parser";
 // routers
 import jobRouter from "./routes/jobRouter.js";
 import authRouter from "./routes/authRouter.js";
-import userRouter from "./routes/userRouter.js"
+import userRouter from "./routes/userRouter.js";
 
 //middleware
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
@@ -26,6 +26,10 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Hello world");
+});
+
+app.get("/api/v1/test", (req, res) => {
+  res.json({ msg: "test route" });
 });
 
 app.use("/api/v1/jobs", authenticateUser, jobRouter);
