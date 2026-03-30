@@ -1,27 +1,33 @@
 import { createContext, useContext, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, redirect, useLoaderData } from "react-router-dom";
 import Wrapper from "../assets/wrappers/Dashboard";
 import { BigSidebar, Navbar, SmallSidebar } from "../components";
 import { checkDefaultTheme } from "../App";
 
+export const loader = () => {
+  return "hello world";
+};
+
 const DashboardContext = createContext();
 
 const DashboardLayout = () => {
+  const data = useLoaderData();
+  console.log(data);
   // temp
   const user = { name: "john" };
   const [showSideBar, setShowSideBar] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme());
 
-  console.log("DashboardLayout");
-  console.log("showSideBar=");
-  console.log(showSideBar);
+  // console.log("DashboardLayout");
+  // console.log("showSideBar=");
+  // console.log(showSideBar);
 
   const toggleDarkThem = () => {
     const newDarkTheme = !isDarkTheme;
     setIsDarkTheme(newDarkTheme);
     document.body.classList.toggle("dark-theme", newDarkTheme);
     localStorage.setItem("darktheme", newDarkTheme);
-    console.log("toggleDarkThem");
+    // console.log("toggleDarkThem");
   };
 
   const toggleSideBar = () => {
@@ -50,7 +56,7 @@ const DashboardLayout = () => {
           <BigSidebar />
           <div>
             <Navbar />
-            <div className="dashboar-page">
+            <div className="dashboard-page">
               <Outlet />
             </div>
           </div>
