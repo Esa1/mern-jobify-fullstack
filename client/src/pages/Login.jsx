@@ -14,15 +14,13 @@ export const action = async ({ request }) => {
     toast.success("Login succeeded");
     return redirect("/dashboard");
   } catch (error) {
-    //    toast.error(error?.response?.data?.msg);
-    errors.msg = error?.response?.data?.msg; //useActionData example
+    toast.error(error?.response?.data?.msg);
     return error;
   }
   return null;
 };
 
 const Login = () => {
-  const errors = useActionData();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
 
@@ -33,11 +31,7 @@ const Login = () => {
         <h4>login</h4>
         <FormRow type="email" name="email" defaultValue="john@gmail.com" />
         <FormRow type="password" name="password" defaultValue="secret123" />
-        <button
-          type="submit"
-          className="btn btn-block"
-          isdisabled={isSubmitting}
-        >
+        <button type="submit" className="btn btn-block" disabled={isSubmitting}>
           {isSubmitting ? "submitting" : "submit"}
         </button>
         <button type="button" className="btn btn-block">
