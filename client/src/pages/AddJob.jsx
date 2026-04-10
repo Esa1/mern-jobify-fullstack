@@ -1,7 +1,7 @@
 import { FormRow } from "../components";
 import Wrapper from "../assets/wrappers/DashboardFormPage";
 import { useOutletContext } from "react-router-dom";
-import { JOB_STATUS, JOB_TYPE } from "../utils/constants";
+import { JOB_STATUS, JOB_TYPE } from "../../../utils/constants";
 import { Form, useNavigation, redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import customFetch from "../utils/customFetch";
@@ -18,6 +18,19 @@ const AddJob = () => {
         <div className="form-center">
           <FormRow name="position" type="text" />
           <FormRow name="company" type="text" />
+          <FormRow
+            name="jobLocation"
+            type="text"
+            labelText="job location"
+            defaultValue={user.location}
+          />
+          <button
+            type="submit"
+            className="btn btn-block form-btn"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "submitting..." : "submit"}
+          </button>
         </div>
       </Form>
     </Wrapper>
