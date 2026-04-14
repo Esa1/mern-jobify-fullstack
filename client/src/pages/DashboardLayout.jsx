@@ -19,8 +19,6 @@ const DashboardContext = createContext();
 
 const DashboardLayout = () => {
   const { user } = useLoaderData();
-  console.log("DashboardLayout::user=");
-  console.log(user);
 
   const navigate = useNavigate();
   const [showSideBar, setShowSideBar] = useState(false);
@@ -34,12 +32,10 @@ const DashboardLayout = () => {
   };
 
   const toggleSideBar = () => {
-    console.log("triggered toggleSidebar function");
     setShowSideBar(!showSideBar);
   };
 
   const logoutUser = async () => {
-    console.log("logout user");
     navigate("/");
     await customFetch.get("/auth/logout");
     toast.success("Logging out");

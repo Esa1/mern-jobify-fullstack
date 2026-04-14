@@ -6,7 +6,7 @@ import NavLinks from "./NavLinks";
 
 const BigSidebar = () => {
   const { showSidebar } = useDashboardContext();
-  console.log("BigSidebar");
+
   return (
     <Wrapper>
       <div
