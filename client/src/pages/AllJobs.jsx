@@ -8,7 +8,7 @@ export const loader = async () => {
     const { data } = await customFetch.get("/jobs");
     console.log("AllJobs::loader::data=");
     console.log(data);
-    return data;
+    return { data };
   } catch (error) {
     toast.error(error?.error?.response?.data?.msg);
     throw error;
