@@ -26,18 +26,20 @@ const Job = ({
         </div>
       </header>
       <div className="content">
-        <JobInfo icon={<FaLocationArrow />} text={jobLocation} />
-        <JobInfo icon={<FaCalendarAlt />} text={date} />
-        <JobInfo icon={<FaBriefcase />} text={jobType} />
-        <div className={`status ${jobStatus}`}>{jobStatus}</div>
-        <footer className="actions">
-          <Link className="btn edit-btn">Edit</Link>
-          <Form>
-            <button type="submit" className="btn delete-btn">
-              Delete
-            </button>
-          </Form>
-        </footer>
+        <div className="content-center">
+          <JobInfo icon={<FaLocationArrow />} text={jobLocation} />
+          <JobInfo icon={<FaCalendarAlt />} text={date} />
+          <JobInfo icon={<FaBriefcase />} text={jobType} />
+          <div className={`status ${jobStatus}`}>{jobStatus}</div>
+          <footer className="actions">
+            <Link className="btn edit-btn">Edit</Link>
+            <Form>
+              <button type="submit" className="btn delete-btn">
+                Delete
+              </button>
+            </Form>
+          </footer>
+        </div>
       </div>
     </Wrapper>
   );
