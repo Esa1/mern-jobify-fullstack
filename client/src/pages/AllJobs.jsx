@@ -7,8 +7,7 @@ import { useContext, createContext } from "react";
 export const loader = async () => {
   try {
     const { data } = await customFetch.get("/jobs");
-    console.log("AllJobs::loader::data=");
-    console.log(data);
+
     return { data };
   } catch (error) {
     toast.error(error?.error?.response?.data?.msg);
@@ -19,8 +18,7 @@ export const loader = async () => {
 const AllJobsContext = createContext();
 const AllJobs = () => {
   const { data } = useLoaderData();
-  console.log("AllJobs::data=");
-  console.log(data);
+
   return (
     <AllJobsContext.Provider value={{ data }}>
       <SearchContainer />
