@@ -11,13 +11,23 @@ export const loader = async ({ params }) => {
     const { data } = await customFetch.get(`/jobs/${params.id}`);
     return data;
   } catch (error) {
-    toast.error(error?.error?.response?.data?.msg);
+    toast.error(error?.response?.data?.msg);
     return redirect("/dashboard/all-jobs");
   }
 };
 
-export const action = async () => {
-  return null;
+export const action = async ({ request, params }) => {
+  const formData = await request.formData();
+  const jobData = Object.fromEntries(formData);
+
+  try {
+    await customFetch.patch(`/jobs/${params.id}`, jobData);
+    toast.success("Job edited successfully");
+    return redirect("/dashboard/all-jobs");
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return error;
+  }
 };
 
 const EditJob = () => {
