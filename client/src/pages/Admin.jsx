@@ -15,7 +15,7 @@ export const loader = async () => {
 };
 
 const Admin = () => {
-  const data = useLoaderData();
+  const { users, jobs } = useLoaderData();
 
   return (
     <Wrapper>
