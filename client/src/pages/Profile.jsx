@@ -1,6 +1,28 @@
 import { FormRow } from "../components";
 import Wrapper from "../assets/wrappers/DashboardFormPage";
 import { useOutletContext, useNavigation, Form } from "react-router-dom";
+import customFetch from "../utils/customFetch";
+import { toast } from "react-toastify";
+
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const file = formData.get("avatar"); // Get the file from the form data
+  console.log("action called with file:", file);
+  if (file && file.size > 1000000) {
+    // Check if the file size exceeds 1MB
+    toast.error("File size exceeds 1MB limit.");
+    return null; // Return early if the file is too large
+  }
+  // Here you can handle the form data, e.g., send it to the server
+  try {
+    await customFetch.patch("/users/update-user", formData);
+    toast.success("Profile updated successfully!");
+  } catch (error) {
+    toast.error(error.response?.data?.msg);
+  }
+  return null;
+};
+
 const Profile = () => {
   const { user } = useOutletContext();
   const { name, email, lastName, location, role, avatar } = user;
