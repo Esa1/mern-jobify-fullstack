@@ -12,7 +12,12 @@ import cookieParser from "cookie-parser";
 import jobRouter from "./routes/jobRouter.js";
 import authRouter from "./routes/authRouter.js";
 import userRouter from "./routes/userRouter.js";
+// public
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import path from "path";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 //middleware
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import { authenticateUser } from "./middleware/authMiddleWare.js";
@@ -20,6 +25,8 @@ import { authenticateUser } from "./middleware/authMiddleWare.js";
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+
+app.use(express.static(path.join(__dirname, "./public")));
 
 app.use(cookieParser());
 app.use(express.json());
