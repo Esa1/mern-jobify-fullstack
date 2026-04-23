@@ -1,7 +1,7 @@
 import React from "react";
-import { Form, redirect, useNavigation, Link } from "react-router-dom";
+import { Form, redirect, Link } from "react-router-dom";
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
-import { Logo, FormRow } from "../components";
+import { Logo, FormRow, SubmitBtn } from "../components";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
 
@@ -14,26 +14,13 @@ export const action = async ({ request }) => {
     toast.success("Registration successful");
     return redirect("/login");
   } catch (error) {
-    // console.log("did toast error show, error=");
-    // console.log(error);
-    // console.log("error?.response?.data?.msg=");
-    console.log("error?.response?.data?.msg=");
-    console.log(error?.response?.data?.msg);
     toast.error(error?.response?.data?.msg);
-    // toast.error("Show error");
-    // console.log("error=");
-    // console.log(error);
 
     return error;
   }
 };
 
 const Register = () => {
-  const navigation = useNavigation();
-  console.log("navigation=");
-  console.log(navigation);
-  const isSubmitting = useNavigation.state === "submitting";
-
   return (
     <Wrapper>
       <Form method="post" className="form">
@@ -49,9 +36,7 @@ const Register = () => {
         <FormRow type="text" name="location" defaultValue="Turku" />
         <FormRow type="email" name="email" defaultValue="john@gmail.com" />
         <FormRow type="password" name="password" defaultValue="secret123" />
-        <button type="submit" className="btn btn-block" disabled={isSubmitting}>
-          {isSubmitting ? "submitting..." : "submit"}
-        </button>
+        <SubmitBtn />
         <p>
           Already a member?
           <Link to="/login" className="member-btn" />

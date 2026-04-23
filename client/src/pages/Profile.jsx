@@ -1,13 +1,13 @@
-import { FormRow } from "../components";
+import { FormRow, SubmitBtn } from "../components";
 import Wrapper from "../assets/wrappers/DashboardFormPage";
-import { useOutletContext, useNavigation, Form } from "react-router-dom";
+import { useOutletContext, Form } from "react-router-dom";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
 
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const file = formData.get("avatar"); // Get the file from the form data
-  console.log("action called with file:", file);
+
   if (file && file.size > 1000000) {
     // Check if the file size exceeds 1MB
     toast.error("File size exceeds 1MB limit.");
@@ -26,8 +26,6 @@ export const action = async ({ request }) => {
 const Profile = () => {
   const { user } = useOutletContext();
   const { name, email, lastName, location, role, avatar } = user;
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === "submitting";
 
   return (
     <Wrapper>
@@ -56,13 +54,7 @@ const Profile = () => {
           />
           <FormRow type="email" name="email" defaultValue={email} />
           <FormRow type="text" name="location" defaultValue={location} />
-          <button
-            type="submit"
-            className="btn btn-block form-btn"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "submitting..." : "submit"}
-          </button>
+          <SubmitBtn formBtn />
         </div>
       </Form>
     </Wrapper>
