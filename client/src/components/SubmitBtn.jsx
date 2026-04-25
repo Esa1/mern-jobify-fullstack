@@ -6,7 +6,6 @@ const SubmitBtn = ({ formBtn }) => {
   return (
     <button
       type="submit"
-      className="btn btn-block form-btn"
       className={`btn btn-block form-btn ${formBtn ? "form-btn" : ""}`}
       disabled={isSubmitting}
     >
