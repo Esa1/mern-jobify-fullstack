@@ -32,6 +32,11 @@ export const deleteJob = async (req, res) => {
 };
 
 export const showStats = async (req, res) => {
+  let stats = await Job.aggregate([
+    { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
+  ]);
+  console.log(stats);
+
   const defaultStats = {
     pending: 22,
     interview: 11,
