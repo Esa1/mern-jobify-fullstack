@@ -65,6 +65,19 @@ export const showStats = async (req, res) => {
     { $limit: 6 },
   ]);
 
+  monthlyApplications = monthlyApplications
+    .map((item) => {
+      const {
+        _id: { year, month },
+        count,
+      } = item;
+      const date = dayjs()
+        .year(year)
+        .month(month - 1)
+        .format("MMM YY");
+      return { date, count };
+    })
+    .reverse();
   // let monthlyApplications = [
   //   { date: "Mar 23", count: 1 },
   //   { date: "Apr 23", count: 2 },
