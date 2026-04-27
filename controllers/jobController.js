@@ -32,5 +32,15 @@ export const deleteJob = async (req, res) => {
 };
 
 export const showStats = async (req, res) => {
-  res.send("stats");
+  const defaultStats = {
+    pending: 22,
+    interview: 11,
+    declined: 4,
+  };
+  let monthlyApplications = [
+    { date: "Mar 23", count: 1 },
+    { date: "Apr 23", count: 2 },
+    { date: "May 23", count: 3 },
+  ];
+  res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
 };
