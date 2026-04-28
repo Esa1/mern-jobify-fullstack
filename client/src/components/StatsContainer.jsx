@@ -1,5 +1,5 @@
 import React from "react";
-import { ChartsContainer, StatsContainer } from "../components";
+import { ChartsContainer } from "../components";
 import customFetch from "../utils/customFetch";
 import { useLoaderData } from "react-router-dom";
 
