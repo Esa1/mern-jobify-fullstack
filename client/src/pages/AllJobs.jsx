@@ -5,6 +5,7 @@ import { useLoaderData } from "react-router-dom";
 import { useContext, createContext } from "react";
 
 export const loader = async () => {
+  console.log("loader called");
   try {
     const { data } = await customFetch.get("/jobs");
 
